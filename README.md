@@ -2,6 +2,6 @@ read me for big O
 
 
 <ul>
-  Joshua Regan @Reganmtics
-  Zainab Abdulfattah @Zeelinga
+  <li>Joshua Regan @Reganmtics</li>
+  <li>Zainab Abdulfattah @Zeelinga</li>
 </ul>
