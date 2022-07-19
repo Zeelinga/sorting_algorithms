@@ -1,6 +1,6 @@
 # README for big O project
 
-- Authors
+<strong>Authors</strong>
 <ul>
   <li>Joshua Regan @Reganmtics</li>
   <li>Zainab Abdulfattah @Zeelinga</li>
