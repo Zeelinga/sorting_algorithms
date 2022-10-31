@@ -1,56 +1,47 @@
 #include "sort.h"
-/**
- * swap - swap 2 element in an list
- * @head: head of list
- * @a: node
- * @b: node
- */
-void swap(listint_t *a, listint_t *b, listint_t **head)
-{
-	listint_t *aux1 = NULL, *aux2 = NULL;
+#include <stdio.h>
 
-	if (a == NULL || b == NULL)
-		return;
-	aux1 = a->prev;
-	aux2 = b->next;
-	/* if nodes are adjacent*/
-	if (aux1)
-		aux1->next = b;
-	if (aux2)
-		aux2->prev = a;
-	a->next = aux2;
-	a->prev = b;
-	b->next = a;
-	b->prev = aux1;
-	if (aux1 == NULL)
-		*head = b;
-}
 /**
- * insertion_sort_list  - insertion_sort_list
- * @list: doubly liked list
+ * insertion_sort_list - sorts a DLL of integers in
+ * ascending order using the insertion sort
+ * algorithm
  *
+ * @list: doubly linked list
+ * Return: no return
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *head, *prev;
-	int value;
+	listint_t *ptr, *tmp;
 
-	if (list == NULL || (*list)->next == NULL || (*list) == NULL)
-	{
+	if (!list)
 		return;
-	}
-	head = *list;
-	while (head)
-	{
-		prev = head->prev;
-				value = head->n;
 
-		while (prev && prev->n > value)
+	ptr = *list;
+
+	while (ptr)
+	{
+		while (ptr->next && (ptr->n > ptr->next->n))
 		{
-			swap(prev, head, list);
+			tmp = ptr->next;
+			ptr->next = tmp->next;
+			tmp->prev = ptr->prev;
+
+			if (ptr->prev)
+				ptr->prev->next = tmp;
+
+			if (tmp->next)
+				tmp->next->prev = ptr;
+
+			ptr->prev = tmp;
+			tmp->next = ptr;
+
+			if (tmp->prev)
+				ptr = tmp->prev;
+			else
+				*list = tmp;
+
 			print_list(*list);
-			prev = head->prev;
 		}
-		head = head->next;
+		ptr = ptr->next;
 	}
 }
